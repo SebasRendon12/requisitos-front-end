@@ -1,5 +1,5 @@
 "use strict";
-(function () {
+(function() {
     var cx = "008572255874373046644:chip1p1uf-4";
     var gcse = document.createElement("script");
     gcse.type = "text/javascript";
@@ -12,15 +12,15 @@
 function checkBck() {
     jQuery(".gsc-input input").attr("placeholder", "Buscar en la Universidad");
     if (!jQuery(".gsc-search-button input").attr("src")) {
-        window.setTimeout(function () {
+        window.setTimeout(function() {
             checkBck();
         }, 100);
     }
 }
 checkBck();
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
     prepare_content_menu();
-    $("#unalOpenMenuServicios, #unalOpenMenuPerfiles").on("click", function (e) {
+    $("#unalOpenMenuServicios, #unalOpenMenuPerfiles").on("click", function(e) {
         var $target = $(this).data("target");
         var $mOffset = $(this).offset();
         $($target).css({
@@ -43,11 +43,11 @@ jQuery(document).ready(function ($) {
             });
         }
     }
-    $(".indicator", "#services").click(function () {
+    $(".indicator", "#services").click(function() {
         $(this).toggleClass("active");
         serviceMenuStatus();
     });
-    $(window).resize(function () {
+    $(window).resize(function() {
         $(".open").removeClass("open");
         if ($(window).width() > 767) {
             $("#services").css({
@@ -67,22 +67,22 @@ jQuery(document).ready(function ($) {
     serviceMenuStatus();
 });
 
-function prepare_content_menu() {
-    var $content_subdominio = $("#subdominio").html();
-    $("#container_subdominio_mobil").html($content_subdominio);
+function prepare_content_menu(){
+    var $content_subdominio = $( "#subdominio" ).html();
+    $( "#container_subdominio_mobil" ).html( $content_subdominio );
 
-    var $content_buscador = $("#buscador").html();
-    $("#container_buscador_mobil").html($content_buscador);
+    var $content_buscador = $( "#buscador" ).html();
+    $( "#container_buscador_mobil" ).html( $content_buscador );
 
     var $content_mainmenu = $('#main_menu_container').clone().find(".menu_sedes").remove().end().html()
-    $("#container_mainmenu_mobil").html($content_mainmenu);
+    $( "#container_mainmenu_mobil" ).html( $content_mainmenu );
 
-    var $conten_sedes = $("#sedes").html();
-    $("#container_sedes_mobil").html($conten_sedes);
+    var $conten_sedes = $( "#sedes" ).html();
+    $( "#container_sedes_mobil" ).html( $conten_sedes );
 
-    var $conten_servicios = $("#servicios").html();
-    $("#container_servicios_mobil").html("<ul>" + $conten_servicios + "</ul>");
+    var $conten_servicios = $( "#servicios" ).html();
+    $( "#container_servicios_mobil" ).html( "<ul>" + $conten_servicios + "</ul>");
 
-    var $conten_profiles = $("#profiles").html();
-    $("#container_profiles_mobil").html($conten_profiles);
+    var $conten_profiles = $( "#profiles" ).html();
+    $( "#container_profiles_mobil" ).html( $conten_profiles );
 }
