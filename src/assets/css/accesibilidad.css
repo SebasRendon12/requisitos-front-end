@@ -36,8 +36,7 @@ body.tamanio-letra-110 ul,
 body.tamanio-letra-110 a,
 body.tamanio-letra-110 ol,
 body.tamanio-letra-110 h3,
-body.tamanio-letra-110 h4
-{
+body.tamanio-letra-110 h4 {
     font-size: calc(15px + 1.5px)
 }
 
@@ -48,6 +47,7 @@ body.tamanio-letra-110 .tx-unal-accesibilidad .panel-content input.letras-porcen
 body.tamanio-letra-110 h1 {
     font-size: 37.5px
 }
+
 body.tamanio-letra-110 h2 {
     font-size: 31.5px
 }
@@ -201,7 +201,7 @@ body.tamanio-letra-150 a,
 body.tamanio-letra-150 ol,
 body.tamanio-letra-150 h3,
 body.tamanio-letra-150 h4 {
-    font-size:  calc(15px + 7.5px)
+    font-size: calc(15px + 7.5px)
 }
 
 body.tamanio-letra-150 h1 {
@@ -321,19 +321,19 @@ body.tamanio-letra-180 a,
 body.tamanio-letra-180 ol,
 body.tamanio-letra-180 h3,
 body.tamanio-letra-180 h4 {
-    font-size: calc(15px +  12px)
+    font-size: calc(15px + 12px)
 }
 
 body.tamanio-letra-180 h1 {
-    font-size: calc(1.7em +  12px)
+    font-size: calc(1.7em + 12px)
 }
 
 body.tamanio-letra-180 h2 {
-    font-size: calc(1.4em +  12px)
+    font-size: calc(1.4em + 12px)
 }
 
 body.tamanio-letra-180 .site-url a {
-    font-size: calc(30px +  12px)
+    font-size: calc(30px + 12px)
 }
 
 body.tamanio-letra-180 .tx-unal-accesibilidad {
@@ -400,11 +400,11 @@ body.tamanio-letra-200 a,
 body.tamanio-letra-200 ol,
 body.tamanio-letra-200 h3,
 body.tamanio-letra-200 h4 {
-    font-size: calc(15px +  15px)
+    font-size: calc(15px + 15px)
 }
 
 body.tamanio-letra-200 h1 {
-    font-size: calc(1.7em +  15px)
+    font-size: calc(1.7em + 15px)
 }
 
 body.tamanio-letra-200 h2 {
@@ -412,7 +412,7 @@ body.tamanio-letra-200 h2 {
 }
 
 body.tamanio-letra-200 .site-url a {
-    font-size: calc(30px +  15px)
+    font-size: calc(30px + 15px)
 }
 
 body.tamanio-letra-200 .tx-unal-accesibilidad {
@@ -432,14 +432,18 @@ main.accesibility-on {
     padding-top: 200px
 }
 
+.tx-unal-accesibilidad-relative {
+    position: relative;
+}
+
 .tx-unal-accesibilidad {
-    
+
     z-index: 2;
-    top: 103px;
     width: 100%;
     left: 0;
     background-color: transparent;
 }
+
 /*ajuste para el desplegable*/
 main.home {
     margin-top: -35px;
