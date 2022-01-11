@@ -97,9 +97,9 @@
         <div class="collapse btn-group languageMenu d-none d-md-block">
           <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">es<span class="caret"></span></div>
           <ul class="dropdown-menu dropdown-menu-right">
-            <li><a href="index.html#">EN - English</a></li>
-            <li><a href="index.html#">GUC - Wayuunaiki</a></li>
-            <li><a href="index.html#">PBB - Nasa yuwe</a></li>
+            <li><a routerLink="login">EN - English</a></li>
+            <li><a routerLink="login">GUC - Wayuunaiki</a></li>
+            <li><a routerLink="login">PBB - Nasa yuwe</a></li>
           </ul>
         </div>
       </nav>
@@ -110,7 +110,7 @@
   <div id="bs-navbar" class="navigation d-none d-md-block">
     <!-- Título del sitio -->
     <div class="site-url" id="subdominio">
-      <a routerLink="home">http://localhost:4200</a>
+      <a routerLink="{{ component }}">{{ componentName }}</a>
     </div>
     <!-- Buscador -->
     <div class="buscador" id="buscador">
@@ -120,21 +120,27 @@
     <!-- Main menu -->
     <div class="navbar-dark mainMenu" id="main_menu_container">
       <!-- Items menú principal -->
-      <div class="btn-group">
-        <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">Item menu ejemplo 1<span
-            class="caret"></span></div>
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" routerLink="home">Página 1</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Página 2</a>
-          </li>
-        </ul>
+      <div class="btn-group" *ngIf="itemsMenu.length === 0" style="height: 35px;">
       </div>
-      <div class="btn-group">
-        <a href="index.html#" class="btn btn-default">Item menu ejemplo 2</a>
+      <div class="btn-group" *ngFor="let item of itemsMenu;">
+        <div *ngIf="item.name !== ''">
+          <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ item.name }}<span class="caret"></span>
+          </div>
+          <ul class="dropdown-menu">
+            <li *ngFor="let subitem of item.items;">
+              <a *ngIf="subitem.routerName === 'logout'" class="dropdown-item" style="color: white; cursor: pointer;"
+                (click)="logOut()">{{ subitem.name }}</a>
+              <a *ngIf="subitem.routerName !== 'logout'" class="dropdown-item" routerLink="{{subitem.routerName}}">{{
+                subitem.name }}</a>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="item.name === ''">
+          <a routerLink="{{item.items[0].routerName}}" class="btn btn-default">{{ item.items[0].name }}</a>
+        </div>
       </div>
+
+
       <!-- Sedes -->
       <div class="btn-group menu_sedes">
         <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">Sedes<span class="caret"></span></div>
@@ -316,33 +322,27 @@
     </nav>
     <nav class="col-lg-3 col-md-3 col-sm-4 col-6 gobiernoLinea">
       <a href="http://correo.unal.edu.co" target="_top">Correo institucional</a>
-      <a href="index.html#">Mapa del sitio</a>
       <a href="http://redessociales.unal.edu.co" target="_top">Redes Sociales</a>
-      <a href="index.html#">FAQ</a>
       <a href="http://unal.edu.co/quejas-y-reclamos/" target="_self">Quejas y reclamos</a>
       <a href="http://unal.edu.co/atencion-en-linea/" target="_self">Atención en línea</a>
       <a href="http://unal.edu.co/encuesta/" target="_self">Encuesta</a>
-      <a href="index.html#">Contáctenos</a>
+      <a href="mailto:serendona@unal.edu.co">Contáctenos</a>
       <a href="http://estadisticas.unal.edu.co/" target="_top">Estadísticas</a>
-      <a href="index.html#">Glosario</a>
     </nav>
     <div class="col-lg-4 col-md-4 col-sm-4 col-12 footer-info">
       <div class="row footer-info-spacing">
         <p class="col-lg-6 col-md-12 col-sm-12 col-6 contacto">
           <b>Contacto página web:</b><br />
-          Dirección ...<br />
-          Edificio ...<br />
-          Bogotá D.C., Colombia<br />
-          (+57 1) 316 5000 Ext.
+          (604) 613 97 99 <br>
+          Medellín, Colombia<br />
         </p>
         <p class="col-lg-6 col-md-12 col-sm-12 col-6 derechos">
           <a href="https://unal.edu.co/fileadmin/user_upload/docs/legal.pdf" target="_blank">&copy; Copyright
             2019</a><br />
           Algunos derechos reservados.<br />
           <a title="Comuníquese con el administrador de este sitio web"
-            href="mailto:EMAIL@unal.edu.co">EMAIL@unal.edu.co</a><br />
-          <a href="index.html#">Acerca de este sitio web</a><br />
-          Actualización:14/05/21
+            href="mailto:serendona@unal.edu.co">serendona@unal.edu.co</a><br />
+          Actualización:10/01/22
         </p>
       </div>
     </div>

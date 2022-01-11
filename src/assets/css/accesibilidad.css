@@ -52,10 +52,6 @@ body.tamanio-letra-110 h2 {
     font-size: 31.5px
 }
 
-body.tamanio-letra-110 .tx-unal-accesibilidad {
-    top: 148px
-}
-
 body.tamanio-letra-110 .site-url a {
     font-size: 31.5px
 }
@@ -93,10 +89,6 @@ body.tamanio-letra-120 .site-url a {
     font-size: calc(30px + 3px)
 }
 
-body.tamanio-letra-120 .tx-unal-accesibilidad {
-    top: 154px
-}
-
 body.tamanio-letra-120 main.accesibility-on {
     padding-top: 230px
 }
@@ -126,10 +118,6 @@ body.tamanio-letra-130 h2 {
 
 body.tamanio-letra-130 .site-url a {
     font-size: calc(30px + 4.5px)
-}
-
-body.tamanio-letra-130 .tx-unal-accesibilidad {
-    top: 160px
 }
 
 body.tamanio-letra-130 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
@@ -166,10 +154,6 @@ body.tamanio-letra-140 h2 {
 
 body.tamanio-letra-140 .site-url a {
     font-size: calc(30px + 6px)
-}
-
-body.tamanio-letra-140 .tx-unal-accesibilidad {
-    top: 169px
 }
 
 body.tamanio-letra-140 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
@@ -216,10 +200,6 @@ body.tamanio-letra-150 .site-url a {
     font-size: calc(30px + 7.5px)
 }
 
-body.tamanio-letra-150 .tx-unal-accesibilidad {
-    top: 175px
-}
-
 body.tamanio-letra-150 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
     width: 58%
 }
@@ -250,10 +230,6 @@ body.tamanio-letra-160 h1 {
 
 body.tamanio-letra-160 h2 {
     font-size: calc(1.4em + 9px)
-}
-
-body.tamanio-letra-160 .tx-unal-accesibilidad {
-    top: 181px
 }
 
 body.tamanio-letra-160 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
@@ -296,10 +272,6 @@ body.tamanio-letra-170 .site-url a {
     font-size: calc(30px + 10.5px)
 }
 
-body.tamanio-letra-170 .tx-unal-accesibilidad {
-    top: 187px
-}
-
 body.tamanio-letra-170 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
     width: 54%
 }
@@ -334,10 +306,6 @@ body.tamanio-letra-180 h2 {
 
 body.tamanio-letra-180 .site-url a {
     font-size: calc(30px + 12px)
-}
-
-body.tamanio-letra-180 .tx-unal-accesibilidad {
-    top: 196px
 }
 
 body.tamanio-letra-180 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
@@ -376,10 +344,6 @@ body.tamanio-letra-190 .site-url a {
     font-size: calc(30px + 13.5px)
 }
 
-body.tamanio-letra-190 .tx-unal-accesibilidad {
-    top: 202px
-}
-
 body.tamanio-letra-190 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
     width: 45%
 }
@@ -413,10 +377,6 @@ body.tamanio-letra-200 h2 {
 
 body.tamanio-letra-200 .site-url a {
     font-size: calc(30px + 15px)
-}
-
-body.tamanio-letra-200 .tx-unal-accesibilidad {
-    top: 208px
 }
 
 body.tamanio-letra-200 .tx-unal-accesibilidad .panel-content input.letras-porcentaje {
