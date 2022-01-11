@@ -30,10 +30,6 @@ export class AppComponent {
     this.router.navigate([path]);
   }
 
-  logOut() {
-    this.global.logOut();
-  }
-
   changeUrl(newComponent: string, newComponentName: string) {
     if (newComponent !== undefined && newComponent !== null && newComponent !== "") {
       if (newComponentName !== undefined && newComponentName !== null && newComponentName !== "") {

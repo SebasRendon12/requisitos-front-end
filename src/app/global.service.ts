@@ -19,8 +19,8 @@ export class GlobalService {
 
   constructor(
     public toastr: ToastrService,
-    public router: Router
-    // public http: HttpClient
+    public router: Router,
+    public http: HttpClient
   ) {
     const localStorageData = localStorage.getItem('g1reqmatr');
     if (localStorageData !== null) {
@@ -42,7 +42,9 @@ export class GlobalService {
 
   public logOut() {
     localStorage.clear();
-    this.router.navigate(['login']);
+    this.currentSession.user = undefined;
+    this.router.navigateByUrl('/login');
+
   }
 
   dateValidation() {

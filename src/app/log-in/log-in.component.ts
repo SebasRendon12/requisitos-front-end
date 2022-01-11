@@ -22,6 +22,10 @@ export class LogInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.logInForm = this.formBuilder.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
     if (this.global.currentSession.user !== null && this.global.currentSession.user !== undefined) {
       switch (this.global.currentSession.user?.rol.toLowerCase()) {
         case 'estudiante':
@@ -33,10 +37,6 @@ export class LogInComponent implements OnInit {
       }
     } else {
       this.header.setItems([], 'login');
-      this.logInForm = this.formBuilder.group({
-        userName: ['', Validators.required],
-        password: ['', Validators.required]
-      });
     }
   }
 

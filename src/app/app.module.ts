@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { PaymentReceiptsComponent } from './payment-receipts/payment-receipts.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
       preventDuplicates: true,
     }),
     MatCarouselModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

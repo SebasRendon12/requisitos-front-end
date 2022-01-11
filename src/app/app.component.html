@@ -129,7 +129,7 @@
           <ul class="dropdown-menu">
             <li *ngFor="let subitem of item.items;">
               <a *ngIf="subitem.routerName === 'logout'" class="dropdown-item" style="color: white; cursor: pointer;"
-                (click)="logOut()">{{ subitem.name }}</a>
+                (click)="global.logOut()">{{ subitem.name }}</a>
               <a *ngIf="subitem.routerName !== 'logout'" class="dropdown-item" routerLink="{{subitem.routerName}}">{{
                 subitem.name }}</a>
             </li>
