@@ -141,7 +141,8 @@
       </div>
       <div class="btn-group" *ngFor="let item of itemsMenu;">
         <div *ngIf="item.name !== ''">
-          <div class="btn btn-default dropdown-toggle" data-toggle="dropdown">{{ item.name }}<span class="caret"></span>
+          <div class="btn btn-default dropdown-toggle" style="cursor: pointer;" data-toggle="dropdown">{{ item.name
+            }}<span class="caret"></span>
           </div>
           <ul class="dropdown-menu">
             <li *ngFor="let subitem of item.items;">
@@ -154,9 +155,9 @@
         </div>
         <div *ngIf="item.name === ''">
           <a *ngIf="item.items[0].routerName === 'enablePaymentRecipts'" (click)="enablePaymentRecipts(mymodal)"
-            class="btn btn-default">{{ item.items[0].name }}</a>
+            class="btn btn-default" style="cursor: pointer;">{{ item.items[0].name }}</a>
           <a *ngIf="item.items[0].routerName !== 'enablePaymentRecipts'" routerLink="{{item.items[0].routerName}}"
-            class="btn btn-default">{{ item.items[0].name }}</a>
+            class="btn btn-default" style="cursor: pointer;">{{ item.items[0].name }}</a>
         </div>
       </div>
 

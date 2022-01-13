@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { cSession } from '../classes/cSession';
 import { cUser } from '../classes/cUser';
 import { GlobalService } from '../global.service';
 
@@ -46,6 +47,8 @@ export class LogInComponent implements OnInit {
   }
 
   resetSession() {
+    this.global.currentSession = new cSession();
+    this.global.currentUser = new cUser();
     localStorage.clear();
   }
 
