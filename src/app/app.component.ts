@@ -14,7 +14,6 @@ export class AppComponent {
   component = this.global.currentComponent;
   componentName = this.global.currentLocation;
   public itemsMenu: cItemsMenu[] = [];
-  title = 'ng-bootstrap-modal-demo';
   closeResult: string = "";
   modalOptions: NgbModalOptions;
 

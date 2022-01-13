@@ -1,3 +1,19 @@
+<!-- Modal aceptar subir documentos -->
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Advertencia</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    ¿Está segur@ que desea enviar estos documentos?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('no')">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="modal.close('yes')">Aceptar</button>
+  </div>
+</ng-template>
 <div class="breadcrumb-class" style="border: 0px;">
   <h1>Ingresos del padre y de la madre. Estos certificados se deben enviar según la situación laboral, de cada uno de
     los responsables</h1><small style="margin-left: 10%;"><span style="color: red;">*</span> son
@@ -24,9 +40,9 @@
     </div>
   </div>
   <div class="row final" style="justify-content: end;">
-    <button class="btn btn-danger" (click)="editDoc(0)">Cancelar</button>
-    <button class="btn btn-primary" (click)="deleteDoc(0)">Terminar más tarde</button>
-    <button class="btn btn-success" (click)="deleteDoc(0)">Guardar</button>
+    <button class="btn btn-danger" (click)="cancelDocs()">Cancelar</button>
+    <button class="btn btn-primary" (click)="saveForLaterDocs()">Terminar más tarde</button>
+    <button class="btn btn-success" (click)="saveDocs(mymodal)">Guardar</button>
   </div>
   <br><br>
   <p style="line-height: 100%;">ENTREGA DE DOCUMENTACIÓN NO VERÍDICA: Según el Acuerdo No. 100 de 1993 del Consejo

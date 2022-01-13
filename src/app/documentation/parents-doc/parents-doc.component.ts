@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from 'src/app/app.component';
 import { cDocument } from 'src/app/classes/cDocument';
 import { cItemsMenu } from 'src/app/classes/cItemsMenu';
@@ -12,10 +13,19 @@ import { GlobalService } from 'src/app/global.service';
 export class ParentsDocComponent implements OnInit {
 
   documents: cDocument[] = [];
+  closeResult: string = "";
+  modalOptions: NgbModalOptions;
+
   constructor(
     private global: GlobalService,
-    private header: AppComponent
-  ) { }
+    private header: AppComponent,
+    private modalService: NgbModal
+  ) {
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    }
+  }
 
   ngOnInit(): void {
     this.global.validateAccess('admitido');
@@ -31,6 +41,28 @@ export class ParentsDocComponent implements OnInit {
     menuItems.push(item2);
     this.header.setItems(menuItems, 'parentsDoc');
     this.loadDocuments();
+  }
+
+  public saveDocs(content: any) {
+    this.modalService.open(content, this.modalOptions).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'yes') {
+        this.global.toastr.success('Documentos enviados exitosamente', 'Enviado');
+        this.global.router.navigate(['admitted']);
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   private loadDocuments() {
@@ -73,5 +105,11 @@ export class ParentsDocComponent implements OnInit {
     console.log('Eliminar documento: ' + (index + 1));
   }
 
+  cancelDocs() {
+    this.global.router.navigate(['admitted']);
+  }
 
+  saveForLaterDocs() {
+    this.global.router.navigate(['admitted']);
+  }
 }
