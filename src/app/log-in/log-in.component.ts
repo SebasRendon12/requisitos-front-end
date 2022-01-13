@@ -45,6 +45,10 @@ export class LogInComponent implements OnInit {
     }
   }
 
+  resetSession() {
+    localStorage.clear();
+  }
+
   submit(): void {
     const user = this.logInForm.value as cUser;
     switch (user.userName) {

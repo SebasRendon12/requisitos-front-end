@@ -5,7 +5,6 @@ export class cSession {
   user?: cUser = undefined;
   date: Date = new Date();
   expirationDate: Date = this.getExpirationDate();
-  isReceiptsActive: boolean = false;
   isPaymentReceiptsEnable: boolean = false;
 
   private getExpirationDate(): Date {
