@@ -11,7 +11,7 @@ app.use(requireHTTPS);
 app.use(express.static('./dist/requisitos-front-end'));
 
 app.get('/*', function (req, res) {
-  res.sendFile('index.html', { root: 'dist/requisitos-front-end' }
+  res.sendFile('index.html', { root: 'dist/requisitos-front-end/' }
   );
 });
 
