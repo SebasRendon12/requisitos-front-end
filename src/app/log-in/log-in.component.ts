@@ -59,13 +59,13 @@ export class LogInComponent implements OnInit {
         this.global.saveCurrentSession();
         this.router.navigate(['student']);
         break;
-      case 'elondunic':
+      case 'elondonoc':
         user.nit = '4337164975';
         user.name = "Edwar Jose Londoño Correa";
         user.rol = "Admitido";
         user.phone = "3117649734";
         user.address = "Cra 43 B 73 a noreste";
-        user.email = "elondunic@unal.edu.co";
+        user.email = "elondonoc@unal.edu.co";
         this.global.currentUser = user;
         this.global.saveCurrentSession();
         this.router.navigate(['admitted']);
