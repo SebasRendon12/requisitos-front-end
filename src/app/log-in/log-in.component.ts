@@ -18,8 +18,7 @@ export class LogInComponent implements OnInit {
     private router: Router,
     private global: GlobalService,
     private header: AppComponent,
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group({
@@ -30,6 +29,12 @@ export class LogInComponent implements OnInit {
       switch (this.global.currentSession.user?.rol.toLowerCase()) {
         case 'estudiante':
           this.router.navigate(['student']);
+          break;
+        case 'admitido':
+          this.router.navigate(['admitted']);
+          break;
+        case 'funcionario':
+          this.router.navigate(['functionary']);
           break;
 
         default:
@@ -42,19 +47,45 @@ export class LogInComponent implements OnInit {
 
   submit(): void {
     const user = this.logInForm.value as cUser;
-    // if (user.userName === 'serendona') {
-    user.nit = '1001366265';
-    user.name = "Sebastián Rendón Arteaga";
-    user.rol = "Estudiante";
-    user.phone = "3147427098";
-    user.address = "Cra 43 B 73 a noreste";
-    user.email = "serendona@unal.edu.co";
-    this.global.currentUser = user;
-    this.global.saveCurrentSession();
-    this.router.navigate(['student']);
-    // } else {
-    //   this.global.toastr.error('Documento o contraseña incorrectas', 'Error');
-    // }
+    switch (user.userName) {
+      case 'serendona':
+        user.nit = '1001366265';
+        user.name = "Sebastián Rendón Arteaga";
+        user.rol = "Estudiante";
+        user.phone = "3147427098";
+        user.address = "Cra 43 B 73 a noreste";
+        user.email = "serendona@unal.edu.co";
+        this.global.currentUser = user;
+        this.global.saveCurrentSession();
+        this.router.navigate(['student']);
+        break;
+      case 'elondunic':
+        user.nit = '4337164975';
+        user.name = "Edwar Jose Londoño Correa";
+        user.rol = "Admitido";
+        user.phone = "3117649734";
+        user.address = "Cra 43 B 73 a noreste";
+        user.email = "elondunic@unal.edu.co";
+        this.global.currentUser = user;
+        this.global.saveCurrentSession();
+        this.router.navigate(['admitted']);
+        break;
+      case 'czapata':
+        user.nit = '1421649754';
+        user.name = "Carlos Mario Zapata Jaramillo";
+        user.rol = "Funcionario";
+        user.phone = "3123467494";
+        user.address = "Cra 43 B 73 a noreste";
+        user.email = "czapata@unal.edu.co";
+        this.global.currentUser = user;
+        this.global.saveCurrentSession();
+        this.router.navigate(['functionary']);
+        break;
+
+      default:
+        this.global.toastr.error('Documento o contraseña incorrectas', 'Error');
+        break;
+    }
   }
 
 }

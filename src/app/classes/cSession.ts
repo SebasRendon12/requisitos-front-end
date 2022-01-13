@@ -5,6 +5,7 @@ export class cSession {
   user?: cUser = undefined;
   date: Date = new Date();
   expirationDate: Date = this.getExpirationDate();
+  isReceiptsActive = false;
 
   private getExpirationDate(): Date {
     let date: Date = new Date();

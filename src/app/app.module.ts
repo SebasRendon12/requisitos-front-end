@@ -11,13 +11,25 @@ import { ToastrModule } from 'ngx-toastr';
 import { PaymentReceiptsComponent } from './payment-receipts/payment-receipts.component';
 import { MatCarouselModule } from '@ngmodule/material-carousel';
 import { HttpClientModule } from '@angular/common/http';
+import { AdmittedComponent } from './admitted/admitted.component';
+import { FunctionaryComponent } from './functionary/functionary.component';
+import { PersonalDocComponent } from './documentation/personal-doc/personal-doc.component';
+import { ParentsDocComponent } from './documentation/parents-doc/parents-doc.component';
+import { DiscountDocComponent } from './documentation/discount-doc/discount-doc.component';
+import { SpecialDocComponent } from './documentation/special-doc/special-doc.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentComponent,
     LogInComponent,
-    PaymentReceiptsComponent
+    PaymentReceiptsComponent,
+    AdmittedComponent,
+    FunctionaryComponent,
+    PersonalDocComponent,
+    ParentsDocComponent,
+    DiscountDocComponent,
+    SpecialDocComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
       preventDuplicates: true,
     }),
     MatCarouselModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

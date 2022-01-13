@@ -5,11 +5,11 @@ import { cUser } from '../classes/cUser';
 import { GlobalService } from '../global.service';
 
 @Component({
-  selector: 'app-student',
-  templateUrl: './student.component.html',
-  styleUrls: ['./student.component.scss']
+  selector: 'app-functionary',
+  templateUrl: './functionary.component.html',
+  styleUrls: ['./functionary.component.scss']
 })
-export class StudentComponent implements OnInit {
+export class FunctionaryComponent implements OnInit {
 
   public user: cUser;
   slides = [
@@ -28,13 +28,12 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.global.validateAccess('estudiante');
+    this.global.validateAccess('funcionario');
     var menuItems: cItemsMenu[] = [];
-    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
-    var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
+    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
-    menuItems.push(item2);
-    this.header.setItems(menuItems, 'student');
+    // var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
+    // menuItems.push(item2);
+    this.header.setItems(menuItems, 'functionary');
   }
-
 }

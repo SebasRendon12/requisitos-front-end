@@ -1,0 +1,23 @@
+<div class="breadcrumb-class" style="border: 0px;">
+  <h1>Documentos personales del admitido</h1><br>
+  <div class="row" style="justify-content: center;align-items: center;">
+    <div class="col-6 document">
+      <div class="col-9">
+        <div class="row" style="border-bottom: 1px solid rgb(165, 165, 165);">
+          <h3>Titulo</h3>
+        </div>
+        <div class="row">
+          <p>Descripción</p>
+        </div>
+      </div>
+      <div class="col-3" style="display: flex; justify-content: center; align-items: center;">
+        <div class="row actions" style="justify-content: center; align-items: center;">
+          <input type="file" style="display:none" id="file{{0}}" accept=".pdf" (change)="uploadFile(0, $event)">
+          <label for="file{{0}}" class="btn btn-success">Añadir</label>
+          <button class="btn btn-primary" (click)="editDoc(0)">Modificar</button>
+          <button class="btn btn-danger" (click)="deleteDoc(0)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,78 @@
-<div class="breadcrumb-class">
-  <p>payment-receipts works!</p>
+<div class="breadcrumb-class" style="border: 0px;">
+  <h2>Mis recibos de pago</h2><br>
+  <div class="row recibo" *ngFor="let receipt of lstReceipts;let i=index">
+    <div class="col-5">
+      <div class="row">
+        <div class="col-6" style="margin-top: 5px;">
+          <h4>Ref. {{ receipt.id }}</h4>
+        </div>
+        <div class="col-6" style="justify-content: start; display: flex;">
+          <div *ngIf="receipt.estado.toLowerCase() === 'pagado'" class="payment-status pagado">
+            PAGADO
+          </div>
+          <div *ngIf="receipt.estado.toLowerCase() === 'enproceso'" class="payment-status en-proceso">
+            EN PROCESO
+          </div>
+          <div *ngIf="receipt.estado.toLowerCase() === 'pendiente'" class="payment-status pendiente">
+            PENDIENTE
+          </div>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-4">
+          <h5>Pago {{ i+1 }} / {{ lstReceipts.length }}</h5>
+        </div>
+        <div class="col-8" style="justify-content: center; display: flex;">
+          <h5>Periodo Académico {{ receipt.anno }}-{{ receipt.periodo }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-4" style="border-right: 1px solid black; padding-right: 20px;">
+      <div class="row">
+        <div class="col-8">
+          <h5>Fecha pago oportuno:</h5>
+        </div>
+        <div class="col-4">
+          <h5>{{ receipt.fechaPago | date:'dd/MM/yyyy' }}</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <h6 style="text-align: end;">Valor:</h6>
+        </div>
+        <div class="col-4">
+          <h6 style="text-align: end;">${{ receipt.valor | number:'1.2' }}</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <h5>Fecha pago extémporaneo:</h5>
+        </div>
+        <div class="col-4">
+          <h5>{{ receipt.fechaPagoExtemporaneo | date:'dd/MM/yyyy' }}</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <h6 style="text-align: end;">Valor:</h6>
+        </div>
+        <div class="col-4">
+          <h6 style="text-align: end;">${{ (receipt.valor * ((receipt.porcentajeMora/100)+1)) | number:'1.2' }}</h6>
+        </div>
+      </div>
+      <div class="row" *ngIf="receipt.fechaPagoExitoso !== undefined && receipt.estado.toLowerCase() !== 'pendiente'">
+        <div class="col-8">
+          <h5><strong>Fecha pago <span *ngIf="receipt.estado.toLowerCase() === 'pagado'">exitoso</span>:</strong></h5>
+        </div>
+        <div class="col-4">
+          <h5>{{ receipt.fechaPagoExitoso | date:'dd/MM/yyyy' }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-3" style="display: flex; justify-content: center; align-items: center;">
+      <button class="btn btn-primary" (click)="printReceipt(i)">Descargar</button>
+      <button *ngIf="receipt.estado.toLowerCase() === 'pendiente'" class="btn btn-warning" style="margin-left: 10px;"
+        (click)="payReceipt(i)">Pagar</button>
+    </div>
+  </div>
 </div>
