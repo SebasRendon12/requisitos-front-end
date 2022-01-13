@@ -32,8 +32,10 @@ export class FunctionaryComponent implements OnInit {
     var menuItems: cItemsMenu[] = [];
     var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
-    // var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
-    // menuItems.push(item2);
+    if (!this.global.currentSession.isPaymentReceiptsEnable) {
+      var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Habilitar recibos de pago", routerName: "enablePaymentRecipts" }]);
+      menuItems.push(item2);
+    }
     this.header.setItems(menuItems, 'functionary');
   }
 }

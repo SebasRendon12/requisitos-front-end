@@ -31,9 +31,11 @@ export class StudentComponent implements OnInit {
     this.global.validateAccess('estudiante');
     var menuItems: cItemsMenu[] = [];
     var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
-    var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
     menuItems.push(item1);
-    menuItems.push(item2);
+    if (this.global.currentSession.isPaymentReceiptsEnable) {
+      var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
+      menuItems.push(item2);
+    }
     this.header.setItems(menuItems, 'student');
   }
 

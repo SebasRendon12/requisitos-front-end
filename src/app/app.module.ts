@@ -17,6 +17,7 @@ import { PersonalDocComponent } from './documentation/personal-doc/personal-doc.
 import { ParentsDocComponent } from './documentation/parents-doc/parents-doc.component';
 import { DiscountDocComponent } from './documentation/discount-doc/discount-doc.component';
 import { SpecialDocComponent } from './documentation/special-doc/special-doc.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -37,12 +38,14 @@ import { SpecialDocComponent } from './documentation/special-doc/special-doc.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 7000,
+      timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
+      progressBar: true,
     }),
     MatCarouselModule.forRoot(),
     HttpClientModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

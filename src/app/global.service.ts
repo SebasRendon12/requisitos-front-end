@@ -25,16 +25,20 @@ export class GlobalService {
     this.loadCurrentSession();
   }
 
-  public saveCurrentSession() {
-    var newSession: cSession = new cSession();
+  public saveCurrentSession(newSession?: cSession) {
+    newSession = newSession ? newSession : new cSession();
+    const newDates = new cSession();
+    newSession.date = newDates.date;
+    newSession.expirationDate = newDates.expirationDate;
     newSession.user = this.currentUser;
     localStorage.setItem('g1reqmatr', JSON.stringify(newSession));
     this.currentUser = newSession.user;
   }
 
   public logOut() {
-    localStorage.clear();
     this.currentSession.user = undefined;
+    this.currentUser = new cUser();
+    this.saveCurrentSession(this.currentSession);
     this.router.navigateByUrl('/login');
 
   }

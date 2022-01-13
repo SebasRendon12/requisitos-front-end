@@ -1,3 +1,20 @@
+<!-- Modal activar recibos de pago -->
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Advertencia</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    ¿Está segur@ que desea habilitar los recibos de pago?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="modal.dismiss('no')">Cancelar</button>
+    <button type="button" class="btn btn-success" (click)="modal.close('yes')">Aceptar</button>
+  </div>
+</ng-template>
+
 <!-- Servicios -->
 <div id="services">
   <div class="indicator d-none d-md-block"></div>
@@ -129,14 +146,17 @@
           <ul class="dropdown-menu">
             <li *ngFor="let subitem of item.items;">
               <a *ngIf="subitem.routerName === 'logout'" class="dropdown-item" style="color: white; cursor: pointer;"
-                (click)="global.logOut()">{{ subitem.name }}</a>
+                (click)="logOut()">{{ subitem.name }}</a>
               <a *ngIf="subitem.routerName !== 'logout'" class="dropdown-item" routerLink="{{subitem.routerName}}">{{
                 subitem.name }}</a>
             </li>
           </ul>
         </div>
         <div *ngIf="item.name === ''">
-          <a routerLink="{{item.items[0].routerName}}" class="btn btn-default">{{ item.items[0].name }}</a>
+          <a *ngIf="item.items[0].routerName === 'enablePaymentRecipts'" (click)="enablePaymentRecipts(mymodal)"
+            class="btn btn-default">{{ item.items[0].name }}</a>
+          <a *ngIf="item.items[0].routerName !== 'enablePaymentRecipts'" routerLink="{{item.items[0].routerName}}"
+            class="btn btn-default">{{ item.items[0].name }}</a>
         </div>
       </div>
 

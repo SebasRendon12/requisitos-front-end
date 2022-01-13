@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { cItemsMenu } from './classes/cItemsMenu';
 import { GlobalService } from './global.service';
 
@@ -13,9 +14,19 @@ export class AppComponent {
   component = this.global.currentComponent;
   componentName = this.global.currentLocation;
   public itemsMenu: cItemsMenu[] = [];
+  title = 'ng-bootstrap-modal-demo';
+  closeResult: string = "";
+  modalOptions: NgbModalOptions;
 
   constructor(public global: GlobalService,
-    public router: Router) { }
+    public router: Router,
+    private modalService: NgbModal
+  ) {
+    this.modalOptions = {
+      backdrop: 'static',
+      backdropClass: 'customBackdrop'
+    }
+  }
 
   public setDefaultItems(path: string) {
     var item1 = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "login" }, { name: "Cerrar Sesión", routerName: "logout" }]);
@@ -28,6 +39,38 @@ export class AppComponent {
   public setItems(items: cItemsMenu[], path: string) {
     this.itemsMenu = items;
     this.router.navigate([path]);
+  }
+
+  logOut() {
+    this.setItems([], 'login');
+    this.global.logOut();
+  }
+
+  public enablePaymentRecipts(content: any) {
+    this.modalService.open(content, this.modalOptions).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+      if (result === 'yes') {
+        this.global.currentSession.isPaymentReceiptsEnable = true;
+        this.global.saveCurrentSession(this.global.currentSession);
+        this.global.toastr.success('Recibos de pago activados', 'Nuevo mensaje');
+        var menuItems: cItemsMenu[] = [];
+        var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+        menuItems.push(item1);
+        this.setItems(menuItems, 'functionary');
+      }
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 
   changeUrl(newComponent: string, newComponentName: string) {

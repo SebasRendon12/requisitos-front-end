@@ -1,1 +1,37 @@
-<p>discount-doc works!</p>
+<div class="breadcrumb-class" style="border: 0px;">
+  <h1>Documentos para la aplicación de descuentos</h1><small style="margin-left: 10%;"><span
+      style="color: red;">*</span> son
+    documentos obligatorios</small><br>
+  <div class="row" style="justify-content: center;align-items: center;">
+    <div class="col-5 document" *ngFor="let doc of documents; let i=index">
+      <div class="col-9">
+        <div class="row" style="border-bottom: 1px solid rgb(165, 165, 165);">
+          <h4 style="line-height: 115%;">{{ doc.title }} <span *ngIf="doc.required" style="color: red;">*</span></h4>
+        </div>
+        <div class="row">
+          <p style="line-height: 125%;">{{ doc.description }}</p>
+        </div>
+      </div>
+      <div class="col-3" style="display: flex; justify-content: center; align-items: center;">
+        <div class="row actions" style="justify-content: center; align-items: center;">
+          <input type="file" style="display:none" id="file{{i}}" accept="{{doc.fileTypes}}"
+            (change)="uploadFile(i, $event)">
+          <label for="file{{i}}" class="btn btn-success">Añadir</label>
+          <button class="btn btn-primary" (click)="editDoc(i)">Modificar</button>
+          <button class="btn btn-danger" (click)="deleteDoc(i)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row final" style="justify-content: end;">
+    <button class="btn btn-danger" (click)="editDoc(0)">Cancelar</button>
+    <button class="btn btn-primary" (click)="deleteDoc(0)">Terminar más tarde</button>
+    <button class="btn btn-success" (click)="deleteDoc(0)">Guardar</button>
+  </div>
+  <br><br>
+  <p style="line-height: 100%;">ENTREGA DE DOCUMENTACIÓN NO VERÍDICA: Según el Acuerdo No. 100 de 1993 del Consejo
+    Superior Universitario, en su Artículo 14° reza así: "El estudiante que presente documentación que no corresponda a
+    su situación socio-económica real, oculte información o trate de evadir el pago de los derechos de matrícula, pagará
+    en el período lectivo correspondiente la matrícula máxima (9,879 veces el salario mínimo legal mensual vigente), sin
+    perjuicio de las sanciones legales pertinentes y de lo dispuesto en los Acuerdos 101 de 1997 y 116 de 1986".</p>
+</div>

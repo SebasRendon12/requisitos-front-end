@@ -56,7 +56,7 @@ export class LogInComponent implements OnInit {
         user.address = "Cra 43 B 73 a noreste";
         user.email = "serendona@unal.edu.co";
         this.global.currentUser = user;
-        this.global.saveCurrentSession();
+        this.global.saveCurrentSession(this.global.currentSession);
         this.router.navigate(['student']);
         break;
       case 'elondonoc':
@@ -67,18 +67,18 @@ export class LogInComponent implements OnInit {
         user.address = "Cra 43 B 73 a noreste";
         user.email = "elondonoc@unal.edu.co";
         this.global.currentUser = user;
-        this.global.saveCurrentSession();
+        this.global.saveCurrentSession(this.global.currentSession);
         this.router.navigate(['admitted']);
         break;
-      case 'czapata':
+      case 'cmzapata':
         user.nit = '1421649754';
         user.name = "Carlos Mario Zapata Jaramillo";
         user.rol = "Funcionario";
         user.phone = "3123467494";
         user.address = "Cra 43 B 73 a noreste";
-        user.email = "czapata@unal.edu.co";
+        user.email = "cmzapata@unal.edu.co";
         this.global.currentUser = user;
-        this.global.saveCurrentSession();
+        this.global.saveCurrentSession(this.global.currentSession);
         this.router.navigate(['functionary']);
         break;
 
