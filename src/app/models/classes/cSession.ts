@@ -1,11 +1,12 @@
-import { DatePipe } from "@angular/common";
 import { cUser } from "./cUser";
 
 export class cSession {
   user?: cUser = undefined;
-  date: Date = new Date();
+  fecha: Date = new Date();
+  id: number = 0;
+  usuario_id?: number = undefined;
   expirationDate: Date = this.getExpirationDate();
-  isPaymentReceiptsEnable: boolean = false;
+  // isPaymentReceiptsEnable: boolean = false;
 
   private getExpirationDate(): Date {
     let date: Date = new Date();

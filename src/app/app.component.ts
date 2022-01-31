@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { cItemsMenu } from './classes/cItemsMenu';
 import { GlobalService } from './global.service';
+import { cItemsMenu } from './models/classes/cItemsMenu';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   public setDefaultItems(path: string) {
-    var item1 = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "login" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+    var item1 = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "login" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     this.itemsMenu.push(item1);
     // var item2 = new cItemsMenu().create(undefined, [{ name: "Ingresar", routerName: "login" }]);
     // this.itemsMenu.push(item2);
@@ -40,20 +40,20 @@ export class AppComponent {
     this.router.navigate([path]);
   }
 
-  logOut() {
+  async logOut() {
     this.setItems([], 'login');
-    this.global.logOut();
+    await this.global.logOut();
   }
 
   public enablePaymentRecipts(content: any) {
     this.modalService.open(content, this.modalOptions).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
       if (result === 'yes') {
-        this.global.currentSession.isPaymentReceiptsEnable = true;
-        this.global.saveCurrentSession(this.global.currentSession);
+        // this.global.currentSession.isPaymentReceiptsEnable = true;
+        // this.global.saveCurrentSession(this.global.currentSession);
         this.global.toastr.success('Recibos de pago activados', 'Nuevo mensaje');
         var menuItems: cItemsMenu[] = [];
-        var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+        var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
         menuItems.push(item1);
         this.setItems(menuItems, 'functionary');
       }

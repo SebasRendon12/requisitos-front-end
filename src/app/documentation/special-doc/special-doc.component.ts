@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from 'src/app/app.component';
-import { cDocument } from 'src/app/classes/cDocument';
-import { cItemsMenu } from 'src/app/classes/cItemsMenu';
+import { cDocument } from 'src/app/models/classes/cDocument';
 import { GlobalService } from 'src/app/global.service';
+import { cItemsMenu } from 'src/app/models/classes/cItemsMenu';
 
 @Component({
   selector: 'app-special-doc',
@@ -30,7 +30,7 @@ export class SpecialDocComponent implements OnInit {
   ngOnInit(): void {
     this.global.validateAccess('admitido');
     var menuItems: cItemsMenu[] = [];
-    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "admitted" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "admitted" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
     var item2: cItemsMenu = new cItemsMenu().create('Documentación socioeconómica', [
       { name: "Documentación personal", routerName: "personalDoc" },

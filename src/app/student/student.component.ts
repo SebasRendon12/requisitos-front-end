@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { cItemsMenu } from '../classes/cItemsMenu';
-import { cUser } from '../classes/cUser';
 import { GlobalService } from '../global.service';
+import { cItemsMenu } from '../models/classes/cItemsMenu';
+import { cUser } from '../models/classes/cUser';
 
 @Component({
   selector: 'app-student',
@@ -30,12 +30,12 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
     this.global.validateAccess('estudiante');
     var menuItems: cItemsMenu[] = [];
-    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
-    if (this.global.currentSession.isPaymentReceiptsEnable) {
-      var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
-      menuItems.push(item2);
-    }
+    // if (this.global.currentSession.isPaymentReceiptsEnable) {
+    //   var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Recibos de pago", routerName: "paymentReceipts" }]);
+    //   menuItems.push(item2);
+    // }
     this.header.setItems(menuItems, 'student');
   }
 

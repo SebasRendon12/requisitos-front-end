@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { cSession } from '../classes/cSession';
-import { cUser } from '../classes/cUser';
 import { GlobalService } from '../global.service';
+import { cSession } from '../models/classes/cSession';
+import { cUser } from '../models/classes/cUser';
 
 @Component({
   selector: 'app-log-in',
@@ -27,7 +27,7 @@ export class LogInComponent implements OnInit {
       password: ['', Validators.required]
     });
     if (this.global.currentSession.user !== null && this.global.currentSession.user !== undefined) {
-      switch (this.global.currentSession.user?.rol.toLowerCase()) {
+      switch (this.global.currentSession.user?.perfil.toLowerCase()) {
         case 'estudiante':
           this.router.navigate(['student']);
           break;
@@ -54,45 +54,41 @@ export class LogInComponent implements OnInit {
 
   submit(): void {
     const user = this.logInForm.value as cUser;
-    switch (user.userName) {
-      case 'serendona':
-        user.nit = '1001366265';
-        user.name = "Sebastián Rendón Arteaga";
-        user.rol = "Estudiante";
-        user.phone = "3147427098";
-        user.address = "Cra 43 B 73 a noreste";
-        user.email = "serendona@unal.edu.co";
-        this.global.currentUser = user;
-        this.global.saveCurrentSession(this.global.currentSession);
-        this.router.navigate(['student']);
-        break;
-      case 'elondonoc':
-        user.nit = '4337164975';
-        user.name = "Edwar Jose Londoño Correa";
-        user.rol = "Admitido";
-        user.phone = "3117649734";
-        user.address = "Cra 43 B 73 a noreste";
-        user.email = "elondonoc@unal.edu.co";
-        this.global.currentUser = user;
-        this.global.saveCurrentSession(this.global.currentSession);
-        this.router.navigate(['admitted']);
-        break;
-      case 'cmzapata':
-        user.nit = '1421649754';
-        user.name = "Carlos Mario Zapata Jaramillo";
-        user.rol = "Funcionario";
-        user.phone = "3123467494";
-        user.address = "Cra 43 B 73 a noreste";
-        user.email = "cmzapata@unal.edu.co";
-        this.global.currentUser = user;
-        this.global.saveCurrentSession(this.global.currentSession);
-        this.router.navigate(['functionary']);
-        break;
+    // switch (user.userName) {
+    //   case 'serendona':
+    //     user.identificacion = '1001366265';
+    //     user.nombre_completo = "Sebastián Rendón Arteaga";
+    //     user.perfil = "Estudiante";
+    //     user.email = "serendona@unal.edu.co";
+    //     this.global.currentUser = user;
+    //     this.global.saveCurrentSession(this.global.currentSession);
+    //     this.router.navigate(['student']);
+    //     break;
+    //   case 'elondonoc':
+    //     user.identificacion = '4337164975';
+    //     user.nombre_completo = "Edwar Jose Londoño Correa";
+    //     user.perfil = "Admitido";
+    //     user.address = "Cra 43 B 73 a noreste";
+    //     user.email = "elondonoc@unal.edu.co";
+    //     this.global.currentUser = user;
+    //     this.global.saveCurrentSession(this.global.currentSession);
+    //     this.router.navigate(['admitted']);
+    //     break;
+    //   case 'cmzapata':
+    //     user.identificacion = '1421649754';
+    //     user.nombre_completo = "Carlos Mario Zapata Jaramillo";
+    //     user.perfil = "Funcionario";
+    //     user.address = "Cra 43 B 73 a noreste";
+    //     user.email = "cmzapata@unal.edu.co";
+    //     this.global.currentUser = user;
+    //     this.global.saveCurrentSession(this.global.currentSession);
+    //     this.router.navigate(['functionary']);
+    //     break;
 
-      default:
-        this.global.toastr.error('Documento o contraseña incorrectas', 'Error');
-        break;
-    }
+    //   default:
+    //     break;
+    // }
+    //     this.global.toastr.error('Documento o contraseña incorrectas', 'Error');
   }
 
 }

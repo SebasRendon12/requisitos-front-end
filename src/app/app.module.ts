@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -18,6 +18,7 @@ import { ParentsDocComponent } from './documentation/parents-doc/parents-doc.com
 import { DiscountDocComponent } from './documentation/discount-doc/discount-doc.component';
 import { SpecialDocComponent } from './documentation/special-doc/special-doc.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatCarouselModule.forRoot(),
     HttpClientModule,
     NgbModule,
+    NgxSpinnerModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

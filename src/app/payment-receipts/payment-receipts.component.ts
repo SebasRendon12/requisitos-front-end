@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalDismissReasons, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from '../app.component';
-import { cItemsMenu } from '../classes/cItemsMenu';
-import { cReceipt } from '../classes/cReceipt';
 import { GlobalService } from '../global.service';
+import { cItemsMenu } from '../models/classes/cItemsMenu';
+import { cReceipt } from '../models/classes/cReceipt';
 import { StudentComponent } from '../student/student.component';
 
 @Component({
@@ -33,7 +33,7 @@ export class PaymentReceiptsComponent implements OnInit {
   ngOnInit(): void {
     this.global.validateAccess('estudiante');
     var menuItems: cItemsMenu[] = [];
-    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "student" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
     this.header.setItems(menuItems, 'paymentReceipts');
     var recibo1 = new cReceipt();

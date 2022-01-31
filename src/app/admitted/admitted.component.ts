@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from '../app.component';
-import { cItemsMenu } from '../classes/cItemsMenu';
-import { cUser } from '../classes/cUser';
 import { GlobalService } from '../global.service';
+import { cItemsMenu } from '../models/classes/cItemsMenu';
+import { cUser } from '../models/classes/cUser';
 
 @Component({
   selector: 'app-admitted',
@@ -30,7 +30,7 @@ export class AdmittedComponent implements OnInit {
   ngOnInit(): void {
     this.global.validateAccess('admitido');
     var menuItems: cItemsMenu[] = [];
-    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.name.toUpperCase(), [{ name: "Mi Perfil", routerName: "admitted" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+    var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "admitted" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
     var item2: cItemsMenu = new cItemsMenu().create('Documentación socioeconómica', [
       { name: "Documentación personal", routerName: "personalDoc" },
