@@ -15,7 +15,7 @@ import { GlobalUrlsService } from './global-urls.service';
 export class GlobalService {
 
   public headers = new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST: GET: OPTIONS: PUT' });
-  public BASE_URL = "http://localhost:8000/" + "g1/";
+  public BASE_URL = "https://requisitos-back-end.herokuapp.com/" + "g1/";
   public currentComponent = "login";
   public currentLocation = "Ciclo de la Matrícula";
   public currentUser: cUser = new cUser();
