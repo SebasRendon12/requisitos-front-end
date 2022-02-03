@@ -33,9 +33,9 @@ export class AdmittedComponent implements OnInit {
     var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "admitted" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
     var item2: cItemsMenu = new cItemsMenu().create('Documentación socioeconómica', [
-      { name: "Documentación personal", routerName: "personalDoc" },
-      { name: "Documentación de padre y madre", routerName: "parentsDoc" },
-      { name: "Documentación para aplicar a descuento", routerName: "discountDoc" },
+      { name: "Documentación personal de admitido obligatoria", routerName: "personalDoc" },
+      { name: "Documentación de ingreso padre y madre de admitido", routerName: "parentsDoc" },
+      { name: "Documentación para aplicación de descuento", routerName: "discountDoc" },
       { name: "Documentación de casos especiales", routerName: "specialDoc" }
     ]);
     menuItems.push(item2);

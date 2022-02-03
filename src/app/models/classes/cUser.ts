@@ -3,5 +3,7 @@ export class cUser {
   identificacion: string = "";
   nombre_usuario: string = "";
   nombre_completo: string = "";
+  contrasena: string = "";
   perfil: string = ""; //rol
+  dninfoa_id: number = 0;
 }

@@ -23,24 +23,11 @@ export class LogInComponent implements OnInit {
 
   ngOnInit(): void {
     this.logInForm = this.formBuilder.group({
-      userName: ['', Validators.required],
-      password: ['', Validators.required]
+      nombre_usuario: ['', Validators.required],
+      contrasena: ['', Validators.required]
     });
-    if (this.global.currentSession.user !== null && this.global.currentSession.user !== undefined) {
-      switch (this.global.currentSession.user?.perfil.toLowerCase()) {
-        case 'estudiante':
-          this.router.navigate(['student']);
-          break;
-        case 'admitido':
-          this.router.navigate(['admitted']);
-          break;
-        case 'funcionario':
-          this.router.navigate(['functionary']);
-          break;
-
-        default:
-          break;
-      }
+    if (this.global.currentSession.usuario !== null && this.global.currentSession.usuario !== undefined) {
+      this.redirect();
     } else {
       this.header.setItems([], 'login');
     }
@@ -52,43 +39,41 @@ export class LogInComponent implements OnInit {
     localStorage.clear();
   }
 
-  submit(): void {
-    const user = this.logInForm.value as cUser;
-    // switch (user.userName) {
-    //   case 'serendona':
-    //     user.identificacion = '1001366265';
-    //     user.nombre_completo = "Sebastián Rendón Arteaga";
-    //     user.perfil = "Estudiante";
-    //     user.email = "serendona@unal.edu.co";
-    //     this.global.currentUser = user;
-    //     this.global.saveCurrentSession(this.global.currentSession);
-    //     this.router.navigate(['student']);
-    //     break;
-    //   case 'elondonoc':
-    //     user.identificacion = '4337164975';
-    //     user.nombre_completo = "Edwar Jose Londoño Correa";
-    //     user.perfil = "Admitido";
-    //     user.address = "Cra 43 B 73 a noreste";
-    //     user.email = "elondonoc@unal.edu.co";
-    //     this.global.currentUser = user;
-    //     this.global.saveCurrentSession(this.global.currentSession);
-    //     this.router.navigate(['admitted']);
-    //     break;
-    //   case 'cmzapata':
-    //     user.identificacion = '1421649754';
-    //     user.nombre_completo = "Carlos Mario Zapata Jaramillo";
-    //     user.perfil = "Funcionario";
-    //     user.address = "Cra 43 B 73 a noreste";
-    //     user.email = "cmzapata@unal.edu.co";
-    //     this.global.currentUser = user;
-    //     this.global.saveCurrentSession(this.global.currentSession);
-    //     this.router.navigate(['functionary']);
-    //     break;
+  private redirect() {
+    switch (this.global.currentSession.usuario?.perfil.toLowerCase()) {
+      case 'estudiante':
+        this.router.navigate(['student']);
+        break;
+      case 'admitido':
+        this.router.navigate(['admitted']);
+        break;
+      case 'funcionario':
+        this.router.navigate(['functionary']);
+        break;
 
-    //   default:
-    //     break;
-    // }
-    //     this.global.toastr.error('Documento o contraseña incorrectas', 'Error');
+      default:
+        this.global.toastr.info('Este rol no tiene acceso', 'Rol no permitido', { timeOut: 4000 });
+        break;
+    }
+  }
+
+  async submit(): Promise<void> {
+    const user = this.logInForm.value as cUser;
+    if (this.logInForm.valid) {
+      var res = await this.global.makeRequest({
+        url: this.global.urls.urlLogIn,
+        spinner: true,
+        item: user
+      });
+      if (res) {
+        if (this.global.validNUE(res.message)) {
+          await this.global.saveNewCurrentSession(res.message);
+          this.redirect();
+        }
+      }
+    }
+    else
+      this.global.toastr.error('El usuario y la contraseña son obligatorias', 'Datos inválidos', { timeOut: 3000 });
   }
 
 }

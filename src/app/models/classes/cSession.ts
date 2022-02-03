@@ -1,7 +1,7 @@
 import { cUser } from "./cUser";
 
 export class cSession {
-  user?: cUser = undefined;
+  usuario?: cUser = undefined;
   fecha: Date = new Date();
   id: number = 0;
   usuario_id?: number = undefined;
