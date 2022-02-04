@@ -46,16 +46,25 @@ export class AppComponent {
   }
 
   public enablePaymentRecipts(content: any) {
-    this.modalService.open(content, this.modalOptions).result.then((result) => {
+    this.modalService.open(content, this.modalOptions).result.then(async (result) => {
       this.closeResult = `Closed with: ${result}`;
       if (result === 'yes') {
-        // this.global.currentSession.isPaymentReceiptsEnable = true;
-        // this.global.saveCurrentSession(this.global.currentSession);
-        this.global.toastr.success('Recibos de pago activados', 'Nuevo mensaje');
-        var menuItems: cItemsMenu[] = [];
-        var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
-        menuItems.push(item1);
-        this.setItems(menuItems, 'functionary');
+        var res = await this.global.makeRequest({
+          url: this.global.urls.urlReceipts + "enable",
+          spinner: true
+        });
+        if (res) {
+          if (res.success) {
+            this.global.toastr.success('Recibos de pago activados', 'Nuevo mensaje');
+            var menuItems: cItemsMenu[] = [];
+            var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
+            menuItems.push(item1);
+            this.setItems(menuItems, 'functionary');
+          }
+          else {
+            this.global.toastr.error('Comuniquese con el administrador', 'Error al habilitar los recibos de pago', { timeOut: 4000 });
+          }
+        }
       }
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

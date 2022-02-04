@@ -29,13 +29,23 @@ export class FunctionaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.global.validateAccess('funcionario');
+    this.getPeriod();
+  }
+
+  private async getPeriod() {
+    var res = await this.global.makeRequest({
+      url: this.global.urls.urlReceipts,
+      spinner: true
+    });
     var menuItems: cItemsMenu[] = [];
     var item1: cItemsMenu = new cItemsMenu().create(this.global.currentUser.nombre_completo.toUpperCase(), [{ name: "Mi Perfil", routerName: "functionary" }, { name: "Cerrar Sesión", routerName: "logout" }]);
     menuItems.push(item1);
-    // if (!this.global.currentSession.isPaymentReceiptsEnable) {
-    //   var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Habilitar recibos de pago", routerName: "enablePaymentRecipts" }]);
-    //   menuItems.push(item2);
-    // }
+    if (res) {
+      if (!res.message.recibos_de_pago_habilitados) {
+        var item2: cItemsMenu = new cItemsMenu().create(undefined, [{ name: "Habilitar recibos de pago", routerName: "enablePaymentRecipts" }]);
+        menuItems.push(item2);
+      }
+    }
     this.header.setItems(menuItems, 'functionary');
   }
 }
